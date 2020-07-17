@@ -1,6 +1,6 @@
 # CapiCodeStyles
 
-![Capivara Code Styles](./images/logo.jpg)
+![Capivara Code Styles](./Images/logo.jpg)
 
 Tópicos abordados:
 
