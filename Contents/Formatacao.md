@@ -148,7 +148,7 @@ Se um método passar deste tamanho, tente abstrai-lo mais, criando mais métodos
 
 Não usar mais de uma instrução por linha. Considera-se instrução tudo que é finalizado por um ponto e vírgula. Salvo exceção, a instrução _for_, neste caso, use o bom senso para quebrar ou não linhas.
 
-Linhas não podem ultrapassar **100** caracteres, salvo exceções por nomes grandes de elementos de código.
+Linhas não podem ultrapassar **120** caracteres, salvo exceções por nomes grandes de elementos de código.
 
 Caso ultrapasse o limite de caracteres, quebra corretamente as expressões dessa linha em várias linhas.
 
