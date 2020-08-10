@@ -2,6 +2,12 @@
 
 ![Capivara Code Styles](./Images/logo.jpg)
 
+[comment]: # ({% comment %}) 
+
+[Ler a documentação completa](https://paulosincos.github.io/CapiCodeStyles/)
+
+[comment]: # ({% endcomment %}) 
+
 Tópicos abordados:
 
 1. [Padronização de projetos][PadronizacaoDeProjetos]
