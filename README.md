@@ -2,11 +2,11 @@
 
 ![Capivara Code Styles](./Images/logo.jpg)
 
-[comment]: # ({% comment %}) 
+[comment]: # ({% comment %})
 
 [Ler a documentação completa](https://paulosincos.github.io/CapiCodeStyles/)
 
-[comment]: # ({% endcomment %}) 
+[comment]: # ({% endcomment %})
 
 Tópicos abordados:
 
@@ -22,6 +22,8 @@ Tópicos abordados:
 1. [Versionamento][Versionamento]
 1. [Revisão de código][RevisaoCodigo]
 
+Para outros casos não citados aqui, pode-se consultar o [guia de estilos C# oficial da Microsoft][OficialCSharpStyleGuide].
+
 [PadronizacaoDeProjetos]: ./Contents/PadronizacaoDeProjetos.md
 [OrganizacaoDasClasses]: ./Contents/OrganizacaoDasClasses.md
 [WebAPI]: ./Contents/WebAPI.md
@@ -33,3 +35,4 @@ Tópicos abordados:
 [SqlDb]: ./Contents/SqlDb.md
 [Versionamento]: ./Contents/Versionamento.md
 [RevisaoCodigo]: ./Contents/RevisaoCodigo.md
+[OficialCSharpStyleGuide]: https://docs.microsoft.com/pt-br/dotnet/csharp/programming-guide/inside-a-program/coding-conventions
