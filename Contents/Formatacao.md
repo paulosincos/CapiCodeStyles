@@ -1,17 +1,169 @@
 # Formatação
 
+Aqui falaremos sobre itens direcionados a como manter o código formatado de maneira legível, sem poluíção visual, e até entrando superficialmente em alguns assuntos de complexidade que visam melhorar a legibilidade.
+
+## Nomeclaturas e declarações
+
+Neste sub-tópico vamos falar sobre como declarar e nomear elementos de código.
+
+### Escolhendo nomes
+
+Ao escolher um nome, evite ao máximo usar abreviações e tenha bom senso ao escolher o nome, refletindo sobre termos mais objetivos e que representam bem a finalidade de cada elemento.
+
+### Tipos de capitalização/case
+
+Para referência, listaremos aqui os tipos mais conhecidos de capitalização/case:
+
+- **Lower Camel Case**, Camel Case ou Dromedary Case => loremIpsumDolor
+- **Upper Camel Case** ou Pascal Case => LoremIpsumDolor
+- **Snake Case** => lorem_ipsum_dolor
+- **Kebab Case** => lorem-ipsum-dolor
+- **Upper Case**, Screaming Snake Case ou apenas Screaming Case => LOREM_IPSUM_DOLOR
+
+### Propriedades (properties)
+
+Em geral, prefira usar propriedades para membros publicos (public) ou protegidos (protected), e nomear no padrão **UpperCamelCase**.
+
+Exemplo:
+```c#
+public int Age { get; set; }
+protected DateTime CreatedAt { get; set; }
+```
+
+### Campos (fields)
+
+Em geral, prefira usar campos para membros privados (private). Sua nomeclatura deve respeitar o padrão **lowerCamelCase**.
+
+IMPORTANTE: Atente-se ao fato do padrão de uso do **_** (**underline**) como prefixo no nome de membros privados, alguns projetos preferem usar este recurso no nome de todos os campos/membros privados, outros não. Siga sempre o mesmo padrão do projeto que está trabalhando.
+
+Exemplo:
+```c#
+private int _age;
+private DateTime _createAt;
+```
+
+ou:
+
+
+```c#
+private int age;
+private DateTime createAt;
+```
+
+### Membros somente leitura
+
+Se uma propriedade ou campo são atribuídos apenas nos construtores, defina-os como **readonly**.
+
+Exemplo:
+```c#
+public int Age { get; } // Propriedade read-only, sem o "set"
+
+private readonly DateTime _createAt; // Campo read-only
+```
+
+### Declaração de variáveis
+
+Sempre prefira usar **var** para declarar variáveis ao invés de explicitar o tipo. Salvo exceção em casos que o compilador não consegue inferir o tipo e exige a definição literal.
+
+Sempre declare variáveis o mais perto possível de seu uso e sua nomeclatura deve seguir o padrão **lowerCamelCase**.
+
+### Outros padrões de nomeclatura
+
+Use o padrão **UpperCamelCase** para todos os seguintes casos:
+
+- partes de um namespace;
+- interfaces;
+- classes;
+- métodos;
+- constantes;
+- estruturas (struct);
+- enums e valores de enums.
+
+## Dimensionamento dos elementos
+
+Falaremos aqui sobre definições de tamanho gerais de elementos de codificação.
+
+### Arquivos
+
+Um arquivo de código deve **evitar** ultrapassar **100 linhas**.
+
+Se o seu aquivo está maior do que isso, tente abstrair mais, criando novas classes e delegando a elas partes da responsabilidade da classe inicial.
+
+### Métodos
+
+Um método não deve ultrapassar **20 linhas**, incluindo sua assinatura e bloco de chaves.
+
+Se um método passar deste tamanho, tente abstraí-lo mais, criando mais métodos, separando melhor a responsabilidade.
+
+Métodos que contiverem **apenas uma linha** de código devem ser convertidos em _expression bodied methods_.
+
+### Linhas
+
+Não usar mais de uma instrução por linha. Considera-se instrução tudo que é finalizado por um ponto e vírgula. Salvo exceção, a instrução _for_, neste caso, use o bom senso para quebrar ou não linhas.
+
+Linhas não podem ultrapassar **120 caracteres**, salvo exceções por nomes grandes de elementos de código.
+
+Caso ultrapasse o limite de caracteres, quebre corretamente as expressões dessa linha em várias linhas.
+
+#### Quebrando linhas
+
+**Uma vez que for necessário** quebrar linhas, a linha deve ser quebrada em **todos os locais possíveis**, sendo locais de quebra de linha:
+
+- Acesso a métodos e/ou propriedades por ponto ( **.** );
+- Separação por vírgula de parametros em declarações ou consumos de métodos;
+
+Expressões lambdas, quando necessário, podem ser quebradas após a declaração do lambda ( **=>** ).
+
+Mantenha cada nova linha com a identação alinhada corretamente ao nível de recuo que ela pertence.
+
+## Identação
+
+A identação deve ser de 4 espaços em branco para cada nível de recuo/profundidade.
+
+Nunca usar caracter de tabulação para fazer identação.
+
+Para automatizar, o Visual Studio por padrão preenche com espaços em branco quando pressionamos tab.
+
+## Uso de chaves
+
+Sempre use chaves para cada novo sub-nível de recuo do algorítimo, mesmo que seja uma instrução única.
+
+Exemplo incorreto:
+
+```c#
+if (bla)
+    DoIt();
+```
+
+Exemplo correto:
+
+```c#
+if (bla)
+{
+    DoIt();
+}
+```
+
+## Comentários
+
+Evite ao máximo deixar comentários explicativos sobre o código, ao invés disso, tente melhorar a legibilidade do código para o que o código consiga explicar por sí só o que está fazendo.
+
+Se precisar escrever comentários, atente-se a gramática correta e escrita formal.
+
+Em nenhuma hipotese versione código comentado com a intenção de manter um back-up de uma versão anterior, afinal, back-up de códigos antigos é papel do versionador, não de comentários.
+
 ## Linhas em branco
 
-Definições de uso de linhas em branco.
+Neste tópico abordaremos as definições de uso de linhas em branco para organização visual do código.
 
 ### Separação de elementos em classes
 
-Devem haver separações de linhas em branco entre:
+Devem haver separações de linhas em branco **entre**:
 
 - métodos;
 - construtores;
 - listas de propriedades e/ou campos;
-- Qualquer outros elementos que formem um "bloco visual", como um uma sub classe, ou a definição de um enum interno.
+- qualquer outros elementos que formem um "bloco visual", como um uma sub classe, ou a definição de um enum interno.
 
 Exemplo:
 ```c#
@@ -42,7 +194,7 @@ public class Exemplo
 }
 ```
 
-### Organização de um algoritimo
+### Usando quebra de linha para organizar um algorítimo
 
 Devem haver linhas em branco separando instruções de blocos de código do restante do código dentro de um bloco.
 
@@ -76,14 +228,57 @@ public void ReporEstoque()
 - Início e fim de arquivos;
 - Início e fim de classes;
 - Início e fim de métodos;
-- Entre lista de propriedades e/ou campos;
+- Dentro de uma lista de propriedades e/ou campos, separando os membros daquele conjunto;
 - Inícios e finais de blocos de chaves.
 
 Também não deve haver uma separação maior que 1 linha em branco aos locais em que se aplica o uso de linhas em branco.
 
+## Uso de espaços em branco
+
+Use um, e apenas um, espaço em branco para separar elementos nos seguintes casos:
+
+- Ao consumir métodos com **mais de um** parâmetro, **após a vírgula** de cada parâmetro informado;
+- Ao declarar métodos com **mais de um** parâmetro, **após a vírgula** de cada parâmetro declarado;
+- Entre operadores e operandos de uma expressão binária, ternária ou booleana (**+**, **-**, **==**, **&&**, **??**, etc.).
+  Correto: "`varA + varB`". Incorreto: "`varA+varB`";
+
+## Invocando construtores e inicializando instâncias
+
+Ao chamar construtores e inicializar a instância simultaneamente, caso o construtor não possua parâmetros, suprima os parênteses da chamada do construtor.
+
+Exemplo incorreto:
+
+```c#
+var pessoa = new Pessoa()
+{
+    Nome = "Pafúncio da Silva"
+};
+```
+
+Exemplo correto:
+
+```c#
+var pessoa = new Pessoa
+{
+    Nome = "Pafúncio da Silva"
+};
+```
+
+## Parâmetros e retornos de métodos
+
+Um método não deve ter mais do que **três** parâmetros.
+
+Se o seu método contém mais do que 3 paramêtros, algumas coisas poderão ser tentadas:
+
+- Encapsular os parâmetros em um objeto de transporte que resultará em um único parâmetro no método;
+- Separar o método em métodos menores, melhorando a separação de responsabilidade e fazendo cada um deles depender de menos parâmetros.
+
+Para retornar dados em um método, evite usar `out` e `ref` em parâmetros e tome bastante cuidado ao retornar tuplas.
+Quando precisar retornar várias informações em um método, dê referência a retornar objetos complexos, mas também reflita se seu método não tem responsabilidades demais e se não pode ser quebrado em métodos menores. Acima de tudo, tenha bom senso na decisão.
+
 ## Complexidade em condicionais encadeadas
 
-Não devem haver mais do que 3 expressões boleanas concatenadas dentro de condicionais encadeadas.
+Não devem haver mais do que 3 expressões boleanas concatenadas em condicionais encadeadas.
 
 Exemplos incorreto:
 
@@ -128,81 +323,54 @@ if (PodeEntrar)
 }
 ```
 
-## Tamanhos
+## Inferência de tipos
 
-Definições gerais de tamanhos permitidos.
+Em vários casos, tanto o compilador, como o IntelliSense, conseguem inferir tipos de maneira automática ao nosso código, sem a necessidade de declaração explícita.
 
-### Arquivos
+Nesses casos, a IDE do Visual Studio costuma deixar a declaração explícita marcada com um aspecto "apagado".
 
-Um arquivo de código não deve ultrapassar 100 linhas.
+Para esses casos de declaração desnecessária, prefira remover a declaração explícita, permitindo a inferência e deixando o código mais limpo.
 
-Se o seu aquivo está maior do que isso, tente abstrair mais, criando novas classes e delegando a elas partes da responsabilidade da classe inicial.
+Exemplo de declaração explicita desnecessária:
 
-### Métodos
+![Referência explicita desnecessária](../Images/Formatacao-ReferenciaExplicitaDesnecessaria.png)
 
-Um método não deve ultrapassar 20 linhas, incluindo sua assinatura e bloco.
+Note que a referência à classe `SaleRequestOrder` está discretamente apagada. Ao parar o mouse em cima dela, a seguinte dica será exibida:
 
-Se um método passar deste tamanho, tente abstrai-lo mais, criando mais métodos, separando melhor a responsabilidade.
+![Dica para remover referência](../Images/Formatacao-ReferenciaExplicitaDesnecessaria-Hint.png)
 
-### Linhas
+Ao ajustar o código, o resultado será:
 
-Não usar mais de uma instrução por linha. Considera-se instrução tudo que é finalizado por um ponto e vírgula. Salvo exceção, a instrução _for_, neste caso, use o bom senso para quebrar ou não linhas.
+```c#
+salesData.Any()
+```
 
-Linhas não podem ultrapassar **120** caracteres, salvo exceções por nomes grandes de elementos de código.
+## Ferramentas de produtividade
 
-Caso ultrapasse o limite de caracteres, quebra corretamente as expressões dessa linha em várias linhas.
+Algumas ferramentas podem nos ajudar muito a manter o código limpo e bem formatado. Nesta seção citaremos algumas.
 
-#### Quebrando linhas
+### Productivity Power Tools
 
-Uma vez que for necessário quebrar linhas, a linha deve ser quebrada em todos os locais possíveis, sendo um local de quebra de linha:
+Essa é uma extensão gratuíta para Visual Studio que adiciona muitas facilidades de codificação.
 
-- Acesso a métodos e/ou propriedades por ponto ( **.** );
-- Separação por vírgula de parametros em declarações ou consumos de métodos;
+Link no marketplace: https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.ProductivityPowerPack2017
 
-Expressões lambdas, quando necessário, podem ser quebradas após a declaração do lambda ( **=>** ).
+Também pode ser baixada diretamente no gerenciador de extenções do Visual Studio e é uma extensão modular que traz várias pequenas extenções, mas não se preocupe, todas as sub-extenções são adicionados ou removidas com apenas 1 clique ao adicionar ou remover a extensão principal.
 
-## Métodos
+Algumas funcionalidades interessantes presentes:
 
-Métodos que contiverem apenas uma linhas de código devem ser convertidos em _expression bodied methods_.
+- Marcação visual de arquivos com problemas no _Solution Explorer_;
+- Remover _usings_ desnecessários e ordenar por ordem alfabética automaticamente ao salvar o arquivos (não ativada por padrão);
+- Formatar o código automaticamente ao salvar (não ativada por padrão).
 
----
+Existem várias outras funcionalidades bem úteis nessa ferramenta.
 
-## TODOs
+### Sonar Lint
 
-identação, chaves obrigatórias,
+Esta extensão para Visual Studio, também gratuíta, permite executar a verificação do Sonar localmente, porém, apenas nos arquivos que estão abertos/em edição. É uma verificação mais superficial por não analizar a solução como um todo, mas já facilita muitas coisas.
 
-tamanho dos arquivos e métodos,
+Link no marketplace: https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2019
 
-quantidade de parametros dos métodos, tuplas
+Também pode ser baixada diretamente no Visual Studio.
 
-comentários
-
-alinhamento de declarações.
-
-Espaço e não tab.
-
-unica instrução por linha.
-
-Espaços em parametros de métodos
-
-Parênteses em construções sem parametros
-
-Operadores binários separados por espaços
-
-Casts (Separados por espaços?)
-
-Remover associações implicitas declaradas explicitamente
-
-Nomes de métodos e outros elementos, padrões de nomeclatura
-
-Static factories ao invés de sobrecarga de construtores ?
-
-Não deixar código comentado
-
-Como escrever comentários
-
-Recomendar Productivity Power tools e Sonar Lint, falar de como configurar
-
-Adicionar exemplos em todos os tópicos possíveis
-
-Quebrar este artigo em sub-tópicos ???
+Quando baixada, esta extensão usará as regras padrões do Sonar, o que já é muito bom por si só. Porém, é possível referênciar um servidor de Sonar existente para usar as mesmas regras definidas nele.
